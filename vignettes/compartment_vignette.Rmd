@@ -1,0 +1,44 @@
+---
+title: "compartment_vignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{compartment_vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(finalproject)
+```
+
+
+The following code uses the bedgraph file produced by the alignment code in this package. It will be named "Fastq.sorted.bg". If you want to run this code on a previously produced bedgraph file, replace "Fastq.sorted.bg" with your file name. 
+
+```{perl}
+inclusive_bedGraph.load_chrom_data('Fastq.sorted.bg')
+
+
+    perl/sw/cs400_centos7.3_acfsoftware/
+      cworld-dekker/new/centos7.3_gnu6.3.0/
+      cworld-dekker-master/scripts/perl/
+      fastq.sorted.bg.scalemartix.p1 ^c
+    
+    
+    perl/sw/cs400_centos7.3_acfsoftware/
+      cworld-dekker/new/centos7.3_gnu6.3.0/
+      cworld-dekker-master/scripts/perl/
+      fastq.sorted.bg.matrix2compartment.p1 ^c
+    
+
+```
+
+The first code chuck helps in forming the matrix from the files received after the alignment
+
+The second code chuck this code converts the matrix generated into the compartments which further gives the eigen vector values which helps in analyzing the data further

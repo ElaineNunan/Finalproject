@@ -1,0 +1,61 @@
+---
+title: "alignment_vingette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{alignment_vingette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(finalproject)
+```
+
+Before running the following code, you must replace the "raw_data.fq.gz" "[REFERENCE GENOME FILE]", "[CHROMOSOME SIZE FILE]" with your original data files.
+
+```{bash}
+Fastq <- readFastq(raw_data.fq.gz)
+
+for Fastq
+
+do
+
+bowtie2 -p 30 -x [REFERENCE GENOME FILE] -1 $Fastq -S $Fastq.sam
+
+samtools view -bS $Fastq.sam > $Fastq.bam
+
+samtools sort $Fastq.bam -o $Fastq.sorted.bam
+
+rm $name.sam $name.bam
+
+genomeCoverageBed -ibam $Fastq.sorted.bam -g [REFERENCE GENOME FILE] -bg > $Fastq.bg
+
+bedtools sort -i $Fastq.bg > $Fastq.sorted.bg
+
+bedGraphToBigWig $Fastq.sorted.bg [CHROMOSOME SIZE FILE] $Fastq.bw
+
+done
+
+```
+
+Once the code has finishing running, two files will be generated 1) a BigWig file and 2) a bedgraph file. The BigWig file can be inputted into a genome browser (such as the UCSC) for visualization, and the bedgraph file can be inputted into the compartmentalization section of this package for compartmentalization analysis. 
+
+
+Program Descriptions:
+Bowtie2- fast and memory efficient alignment program. Good for alignment to long reference genomes.  
+
+Samtools- sorting and converting file types.
+
+GenomeCoverageBed- organizes by chromosomes and makes histograms of read counts.
+
+BedGraphToBigWig- allows us to visualize the histograms. 
+
+
+

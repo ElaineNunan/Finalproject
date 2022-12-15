@@ -1,0 +1,24 @@
+Package: finalproject
+Title: Genome Sequence Alignment and Analysis
+Version: 0.0.0.9000
+Authors@R: 
+    person("Elaine, Ryan, Nishita", "Nunan, Oldridge, Gogia", role = c("aut"),
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: Uses FASTA files for genome alignment and gene transcription analysis.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.2
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+Requirements: Rstudio (version 2022.07 or newer)
+Bowtie2 (version 2.4.5 or newer)
+Samtools
+Bedtools
+GenomeCoverageBed
+BedGraphtoBigWig
+Perl1 package for Rstudio
+Libgd (2.0.28 or higher)
+Ability to run Bash scripts
